@@ -47,38 +47,53 @@ export default new Vuex.Store({
 		'END_TURN' (state) {
 			// determine new population
 			// check for invasion
-			// determine chance of invasion according to tower and wall numbers
-			const battleForAgainst = (((Math.random() * state.buildings.tower.quantity * 3) + (Math.random() * state.buildings.wall.quantity)-state.population) + 100)
-			console.log('battleForAgainst: ' + battleForAgainst)
 			// make invasions always possible
-			const hailMary = Math.random() < 0.01;
-			if (battleForAgainst < 0 || hailMary ) {
-				if (hailMary) console.log('HAIL MARY FULL OF GRACE')
-				state.population -= Math.ceil(battleForAgainst)
+			const invade = Math.random() < 0.1;
+			if (invade) {
+				console.log('you were invaded with pop: ' + state.population )
+				const defense = state.buildings.tower.quantity*10 + state.buildings.wall.quantity*5
+				const battleLoss = state.population - defense + Math.floor(state.population*Math.random())
+				if (battleLoss > 0) {
+					state.population -= battleLoss;
+					console.log('and lost ' + battleLoss + ' people')
+					console.log('defense saved: ' + defense)
+				} else {
+					console.log('and no one died, defense held up')
+				}
 				if (state.population <= 0) state.population = 0
-				console.log('you were invaded and lost ' + battleForAgainst + ' people')
 			} 
+			console.log('Farm %: '+ state.buildings.farm.quantity)
+			console.log('Farm %: '+ state.population)
 			const farmRatio = state.buildings.farm.quantity/state.population;
+			const requiredFarmRatio = 0.1
 			console.log('Farm %: '+ farmRatio)
-			if (farmRatio < 0.1) {
-				const loss = Math.ceil(state.population*(0.45 - farmRatio))
+			if (farmRatio < requiredFarmRatio) {
+				const loss = Math.floor(state.population*(0.45 - farmRatio)) + 10
 				console.log('your people are starving, lost ' + loss +' build more farms')
 				state.population -= loss
-			} else {
+			}
+			if (farmRatio >= requiredFarmRatio && !invade) {
 				// population increases depending on number of farms
 				const growth = Math.ceil((Math.random() * state.buildings.farm.quantity) * 0.10 + state.population*0.07)
 				state.population += growth
 				console.log('your population grew ' + growth +', nice work')
+				// population is capped by number of houses
+				const cappedPop = state.buildings.house.quantity*10;
+				if (state.population > cappedPop) {
+					state.population = cappedPop;
+					console.log('Pop limit reached, build more houses')
+				}
 			}
-			// population is capped by number of houses
-			const cappedPop = state.buildings.house.quantity*10;
-			if (state.population > cappedPop) {
-				state.population = cappedPop;
-				console.log('Pop limit reached, build more houses')
-			}
+		
 			// retreive taxes from population
-			state.gold += Math.floor(Math.random() * state.population);
-
+			const tax = Math.floor(Math.random() * state.population);
+			// maintenance
+			const maintenance = Math.floor((state.buildings.farm.quantity*state.buildings.farm.price + 
+						state.buildings.house.quantity*state.buildings.house.price + 
+						state.buildings.tower.quantity*state.buildings.tower.price + 
+						state.buildings.wall.quantity*state.buildings.wall.price)*0.01)
+			state.gold = state.gold + tax - maintenance
+			if (state.population<=0) console.log('GAME OVEREREREERERERERER')
 			
 
 		}

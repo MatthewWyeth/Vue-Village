@@ -7,7 +7,7 @@ export default {
 	wall: {
 		id: 2, 
 		price: 50,
-		quantity: 0
+		quantity: 1
 	},
 	house: {
 		id: 3, 
