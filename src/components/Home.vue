@@ -3,20 +3,19 @@
         <h1>Your Village</h1>
         <hr>
         <p>Gold: {{ gold }}</p>
-		<p>Houses: {{ village.houses }}</p>
-		<p>Farms: {{ village.farms }}</p>
-		<p>Walls: {{ village.walls }}</p>
-		<p>Towers: {{ village.towers }}</p>
+		<p>Houses: {{ buildings.houses }}</p>
+		<p>Farms: {{ buildings.farms }}</p>
+		<p>Walls: {{ buildings.walls }}</p>
+		<p>Towers: {{ buildings.towers }}</p>
     </div>
 </template>
 <script>
  	import {mapGetters} from 'vuex';
 	export default {
 		computed: {
-			
 			...mapGetters({
 				gold: 'gold',
-				village: 'village',
+				buildings: 'buildings',
             })
 
 		}

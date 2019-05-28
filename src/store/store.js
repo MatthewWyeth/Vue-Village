@@ -33,7 +33,7 @@ export default new Vuex.Store({
 	mutations : { 
 		'BUY_BUILDING' (state, {quantity, type}) {
 			state.buildings[type].quantity += quantity
-			state.gold -= type.price * quantity;
+			state.gold -= state.buildings[type].price * quantity;
 		},
 		'SET_BUILDINGS' (state, buildings) {
 			state.buildings = buildings;
