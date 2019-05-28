@@ -1,4 +1,4 @@
-# vue-cli
+# vue-village
 
 > A Vue.js project
 
