@@ -3,8 +3,8 @@
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">
-					{{type}}
-						 <small>{{this.$store.getters.buildings[type].quantity}}</small>
+					{{type}} ({{buildings[type].quantity}})
+						 <div class="pull-right">Price: {{buildings[type].price}} Gold</div>
 				</h3>
 			</div>
 		</div>
@@ -32,8 +32,8 @@ export default {
 		gold() {
 			return this.$store.getters.gold
 		},
-		village() {
-			return this.$store.getters.village
+		buildings() {
+			return this.$store.getters.buildings
 		}
 	},
 	methods: {

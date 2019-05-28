@@ -11,6 +11,7 @@
                     <router-link to="/buildings" activeClass="active" tag="li"><a>Buildings</a></router-link>
                 </ul>
                 <strong class="navbar-text navbar-right">Gold: {{gold}}</strong>
+				<strong class="navbar-text navbar-right">Pop: {{population}}</strong>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a @click="endTurn" href="#">End Turn</a></li>
                     <li
@@ -46,6 +47,9 @@
 		computed: {
             gold() {
                 return this.$store.getters.gold;
+			},
+			population() {
+                return this.$store.getters.population;
             }
         },
 		methods: {
