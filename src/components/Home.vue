@@ -15,8 +15,8 @@
 		computed: {
 			
 			...mapGetters({
-				gold: 'getGold',
-				village: 'getVillage',
+				gold: 'gold',
+				village: 'village',
             })
 
 		}

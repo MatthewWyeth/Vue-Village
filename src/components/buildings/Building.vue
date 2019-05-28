@@ -4,7 +4,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">
 					{{type}}
-						 <small>{{this.$store.getters.getVillage[type].quantity}}</small>
+						 <small>{{this.$store.getters.buildings[type].quantity}}</small>
 				</h3>
 			</div>
 		</div>
@@ -30,10 +30,10 @@ export default {
 	},
 	computed: {
 		gold() {
-			return this.$store.getters.getGold
+			return this.$store.getters.gold
 		},
 		village() {
-			return this.$store.getters.getVillage
+			return this.$store.getters.village
 		}
 	},
 	methods: {

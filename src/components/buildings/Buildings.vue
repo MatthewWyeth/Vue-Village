@@ -11,7 +11,7 @@
 	export default {
 		computed: {
 			buildings () {
-				return this.$store.getters.getVillage
+				return this.$store.getters.buildings
 			},
 		},
 		components: {

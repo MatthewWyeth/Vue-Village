@@ -43,10 +43,10 @@ export default new Vuex.Store({
 		}
 	},
 	getters : {
-		getVillage: function getVillage(state)  { 
+		buildings(state)  { 
 			return state.buildings
 		},
-		getGold: function getGold(state) {
+		gold(state) {
 		  return state.gold;
 		},
 	},

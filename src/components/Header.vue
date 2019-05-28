@@ -10,9 +10,9 @@
                     <router-link to="/village" activeClass="active" tag="li"><a>Village</a></router-link>
                     <router-link to="/buildings" activeClass="active" tag="li"><a>Buildings</a></router-link>
                 </ul>
-                <strong class="navbar-text navbar-right">Gold:</strong>
+                <strong class="navbar-text navbar-right">Gold: {{gold}}</strong>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a @click="endTurne" href="#">End Turn</a></li>
+                    <li><a @click="endTurn" href="#">End Turn</a></li>
                     <li
                             class="dropdown"
                             :class="{open: isDropdownOpen}"
@@ -43,13 +43,14 @@
               isDropdownOpen: false
           }
 		},
+		computed: {
+            gold() {
+                return this.$store.getters.gold;
+            }
+        },
 		methods: {
-			 ...mapActions({
-                endTurn: 'endTurn',
-            }),
-			endTurne() {
-				this.endTurn()
-				//this.$store.dispatch('endTurn')
+			endTurn() {
+				this.$store.dispatch('endTurn')
 			}
 		}
     }
