@@ -7,6 +7,9 @@ import store from './store/store';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
+
+Vue.http.options.root = 'https://vue-village.firebaseio.com/';
+
 const router = new VueRouter({
 	mode: 'history',
 	routes

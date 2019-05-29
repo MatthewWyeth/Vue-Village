@@ -26,8 +26,8 @@
                                 aria-haspopup="true"
                                 aria-expanded="false">Save & Load <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" >Save Data</a></li>
-                            <li><a href="#" >Load Data</a></li>
+                            <li><a @click="saveData" >Save Data</a></li>
+                            <li><a @click="loadData">Load Data</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -51,7 +51,18 @@
 		methods: {
 			endTurn() {
 				this.$store.dispatch('endTurn')
-			}
+			},
+			saveData() {
+                const data = {
+                    buildings: this.$store.getters.buildings,
+                    integers: this.$store.getters.integers,
+                    log: this.$store.getters.log
+                };
+                this.$http.put('data.json', data);
+            },
+            loadData() {
+				this.$store.dispatch('loadData');
+            }
 		}
     }
 </script>

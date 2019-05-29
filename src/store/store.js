@@ -11,6 +11,11 @@ export default new Vuex.Store({
 		log: []
 	},
 	mutations : { 
+		'SET_DATA' (state, data) {
+			state.buildings = data.buildings
+			state.integers = data.integers
+			state.log = data.log
+		},
 		'BUY_BUILDING' (state, {quantity, type}) {
 			if (state.integers.gold >= state.buildings[type].price * quantity){
 				state.integers.gold -= state.buildings[type].price * quantity;
@@ -110,6 +115,16 @@ export default new Vuex.Store({
 		},
 		endTurn: ({commit}) => {
 			commit('END_TURN');
+		},
+		// load data from firebase
+		loadData: ({commit}) => {
+			Vue.http.get('data.json')
+				.then(response => response.json())
+				.then(data => {
+					if (data) {
+						commit('SET_DATA', data);
+					}
+				});
 		}
 	}
 });
