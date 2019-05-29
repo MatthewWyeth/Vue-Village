@@ -1,9 +1,11 @@
 <template>
-	<div>
-		<building :type="'house'" :quantity="buildings.house.quantity"></building>
-		<building :type="'farm'" :quantity="buildings.farm.quantity"></building>
-		<building :type="'tower'" :quantity="buildings.tower.quantity"></building>
-		<building :type="'wall'" :quantity="buildings.wall.quantity"></building>
+	<div class="container">
+		<h2>Buildings</h2>
+		<div class="panel panel-default">
+			<building :type="'house'" :quantity="buildings.house.quantity"></building>
+			<building :type="'farm'" :quantity="buildings.farm.quantity"></building>
+			<building :type="'wall'" :quantity="buildings.wall.quantity"></building>
+		</div>
 	</div>
 </template>
 <script>

@@ -7,11 +7,11 @@
 
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <router-link to="/village" activeClass="active" tag="li"><a>Village</a></router-link>
                     <router-link to="/buildings" activeClass="active" tag="li"><a>Buildings</a></router-link>
                 </ul>
-                <strong class="navbar-text navbar-right">Gold: {{gold}}</strong>
-				<strong class="navbar-text navbar-right">Pop: {{population}}</strong>
+				<strong class="navbar-text navbar-right" style="color:red">Invasion in {{integers.invasionDays}} turns</strong>
+                <strong class="navbar-text navbar-right">Gold: {{integers.gold}}</strong>
+				<strong class="navbar-text navbar-right">Pop: {{integers.population}}</strong>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a @click="endTurn" href="#">End Turn</a></li>
                     <li
@@ -37,7 +37,6 @@
 </template>
 
 <script>
-	import {mapActions} from 'vuex'
     export default {
         data() {
           return {
@@ -45,12 +44,9 @@
           }
 		},
 		computed: {
-            gold() {
-                return this.$store.getters.gold;
-			},
-			population() {
-                return this.$store.getters.population;
-            }
+			integers() {
+				return this.$store.getters.integers
+			}
         },
 		methods: {
 			endTurn() {
